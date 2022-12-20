@@ -1,9 +1,11 @@
 # ir-calculator
 
-This is an "Imposto de Renda" application made by me!
+Esta é uma aplicação desenvolvida por mim para calculo automático da declaração do imposto de renda para operações feitas na bolsa de valores.
 
-Its current version is optimized for the Brazilian laws of 2023.
+> :warning: **Aplicação ainda em construção!**
 
-The purpose of developing this application was to study the [Streamlit](https://streamlit.io/) framework and also to manually solve a task that I need to do every year.
+O propósito desta aplicação é para ser utilizada como caso de uso para estudo do framework [Streamlit](https://streamlit.io/) e também para facilitar uma tarefa que eu devo fazer todo ano.
 
-For any help or feedback, feel free to reach me at [My Linkedin](https://www.linkedin.com/in/soumessias/).
+Qualquer dúvida ou feedback, entrar em contato no [Meu Linkedin](https://www.linkedin.com/in/soumessias/).
+
+Obrigado!
