@@ -9,7 +9,7 @@ import streamlit
 def processed_dataset(df):
 
     # Loading the Symbols Database
-    symbols_database = pd.read_csv("symbols_database.csv")
+    st.session_state["Symbol_Database"] = pd.read_csv("symbols_database.csv")
     not_found_symbols = []
 
     # Processes to get the Average Cost
@@ -21,7 +21,7 @@ def processed_dataset(df):
     for Symbol in unique_symbols:
 
         # If the symbol not in the database, store it in this list
-        if Symbol not in symbols_database["Symbol"].unique():
+        if Symbol not in st.session_state["Symbol_Database"]["Symbol"].unique():
             not_found_symbols.append(Symbol)
 
         avg_price = []
@@ -77,18 +77,14 @@ def processed_dataset(df):
         st.session_state["Symbols"] = not_found_symbols
 
     # Joining the Processed DF with the Database info
-    processed_df = processed_df.merge(symbols_database[symbols_database.columns[:-1]], on='Symbol', how='left')
+    processed_df = processed_df.merge(st.session_state["Symbol_Database"][st.session_state["Symbol_Database"].columns[:-1]], on='Symbol', how='left')
 
     return processed_df[processed_df["Date"] < datetime.datetime(st.session_state["Year"], 1, 1).date()]
-
-# Function to highlight DataFrames rows based on Purchase or Sell
-def highlight_types(df):
-    return ['background-color: #9ff59f']*len(df) if df.Type == "Compra" else ['background-color: #fc9292']*len(df)
 
 # Get End of the Year Wallet
 def end_of_year_wallet(df):
     # Getting just the last state of each Symbol
-    end_of_year_df = df.groupby("Symbol")[["Total Shares", "Average Cost", "Category"]].last().reset_index().copy()
+    end_of_year_df = df.groupby("Symbol")[["Total Shares", "Average Cost", "Category", "Name", "CNPJ"]].last().reset_index().copy()
     # Calculating the Position Cost
     end_of_year_df["Position Cost"] = end_of_year_df["Total Shares"] * end_of_year_df["Average Cost"]
     # Joining with all dividends received in the Selected Year per Stock
@@ -101,3 +97,40 @@ def end_of_year_wallet(df):
     ).fillna(0).rename(columns={"Amount":"Dividends"})
 
     return end_of_year_df[end_of_year_df["Total Shares"] > 0].round(2)
+
+# Function to automatize the Bens e Direitos declaration message
+def bens_e_direitos_declaration(df, category):
+    desc_array = []
+    cnpj_array = []
+
+    for index, row in df[df["Category"] == category].iterrows():
+        desc_array.append(
+            str(int(row["Total Shares"])) +
+            (" Cotas" if category in ["FII", "ETF"] else " Ações") +
+            " de " +
+            row["Name"] +
+            ", Código de Negociação " +
+            row["Symbol"] +
+            ", ao preço médio de " + ("R$" if category not in ["Stock", "Reit", "Stock ETF"] else "$") +
+            str(row["Average Cost"]) +
+            ". Custo total de " + ("R$" if category not in ["Stock", "Reit", "Stock ETF"] else "$") +
+            str(row["Position Cost"]) + "."
+        )
+        cnpj_array.append(row["CNPJ"])
+    df = pd.DataFrame(zip(desc_array, cnpj_array), columns=["Declaration Description", "CNPJ"])
+    return df
+
+# Function to automatize the dividends message declaration
+def dividendos_declaration(df, category, type):
+    df = df.merge(st.session_state["Symbol_Database"], on="Symbol", how="left")
+    df = df[
+        (df["Category"] == category) &
+        (df["Type"] == type) &
+        (pd.DatetimeIndex(df["Date"]).year == st.session_state["Year"] - 1)
+    ]
+    if category != "Stock":
+        df = df.groupby(["CNPJ", "Name"])["Amount"].sum().reset_index()
+    else:
+        df["Month"] = pd.DatetimeIndex(df["Date"]).month
+        df = df.groupby("Month")["Amount"].sum().reset_index()
+    return df

@@ -132,7 +132,7 @@ Date,Symbol,Type,Amount
 8/13/2021,RECR11,Provento,5.50
 8/13/2021,RBRP11,Provento,2.10
 8/18/2021,MCCI11,Provento,23.00
-8/18/2021,AAPL34,Dividendo Estrangeiro,0.39
+8/18/2021,AAPL34,Dividendo,0.39
 8/23/2021,BBSE3,Dividendo,83.34
 8/26/2021,ITSA4,JCP,3.94
 8/26/2021,ITSA4,JCP,4.86
@@ -160,7 +160,7 @@ Date,Symbol,Type,Amount
 10/20/2021,MCCI11,Provento,23.00
 11/16/2021,RECT11,Provento,23.83
 11/16/2021,RECR11,Provento,10.81
-11/18/2021,AAPL34,Dividendo Estrangeiro,0.41
+11/18/2021,AAPL34,Dividendo,0.41
 11/19/2021,MCCI11,Provento,23.00
 11/25/2021,WIZS3,Dividendo,155.26
 11/29/2021,EGIE3,Dividendo,38.71
@@ -198,16 +198,16 @@ Date,Symbol,Type,Amount
 1/19/2022,MCCI11,Provento,33.00
 1/25/2022,BTLG11,Provento,11.52
 1/31/2022,MOVI3,JCP,7.46
-2/7/2022,VERZ34,Dividendo Estrangeiro,7.64
+2/7/2022,VERZ34,Dividendo,7.64
 2/7/2022,PVBI11,Provento,3.92
-2/10/2022,ATTB34,Dividendo Estrangeiro,9.08
+2/10/2022,ATTB34,Dividendo,9.08
 2/14/2022,VILG11,Provento,4.20
 2/14/2022,RECT11,Provento,23.49
 2/14/2022,RECR11,Provento,21.00
 2/14/2022,RBRP11,Provento,4.60
 2/14/2022,MALL11,Provento,3.60
 2/14/2022,HGRU11,Provento,7.60
-2/16/2022,AAPL34,Dividendo Estrangeiro,0.39
+2/16/2022,AAPL34,Dividendo,0.39
 2/17/2022,MCCI11,Provento,33.00
 2/18/2022,MDIA3,JCP,126.19
 2/23/2022,BBSE3,Dividendo,167.41
@@ -250,9 +250,9 @@ Date,Symbol,Type,Amount
 4/29/2022,WIZS3,Dividendo,8.82
 4/29/2022,PNVL3,JCP,8.97
 4/29/2022,CCRO3,Dividendo,13.12
-5/6/2022,VERZ34,Dividendo Estrangeiro,18.82
+5/6/2022,VERZ34,Dividendo,18.82
 5/10/2022,IGTI11,Dividendo,3.41
-5/11/2022,ATTB34,Dividendo Estrangeiro,7.63
+5/11/2022,ATTB34,Dividendo,7.63
 5/13/2022,VILG11,Provento,9.10
 5/13/2022,RECT11,Provento,20.07
 5/13/2022,HGRU11,Provento,20.50
@@ -273,7 +273,7 @@ Date,Symbol,Type,Amount
 6/14/2022,VILG11,Provento,9.10
 6/20/2022,MCCI11,Provento,45.10
 6/20/2022,VGIP11,Provento,52.50
-6/21/2022,BIEF39,Dividendo Estrangeiro,5.77
+6/21/2022,BIEF39,Dividendo,5.77
 6/24/2022,BTLG11,Provento,33.12
 6/30/2022,CPLE6,JCP,9.11
 6/30/2022,MDIA3,JCP,3.61
@@ -295,7 +295,7 @@ Date,Symbol,Type,Amount
 7/19/2022,MCCI11,Provento,46.20
 7/25/2022,BTLG11,Provento,38.54
 8/5/2022,PVBI11,Provento,9.52
-8/5/2022,VERZ34,Dividendo Estrangeiro,33.98
+8/5/2022,VERZ34,Dividendo,33.98
 8/10/2022,IGTI11,Dividendo,10.23
 8/10/2022,ATTB34,Dividendo,8.09
 8/12/2022,VILG11,Provento,13.68
@@ -343,11 +343,11 @@ Date,Symbol,Type,Amount
 10/20/2022,VGIP11,Provento,25.65
 10/25/2022,BTLG11,Provento,46.62
 10/25/2022,SNAG11,Provento,44.40
-11/1/2022,MUTC34,Dividendo Estrangeiro,1.23
-11/8/2022,VERZ34,Dividendo Estrangeiro,47.21
+11/1/2022,MUTC34,Dividendo,1.23
+11/8/2022,VERZ34,Dividendo,47.21
 11/8/2022,PVBI11,Provento,9.69
 11/10/2022,IGTI11,Dividendo,10.23
-11/11/2022,ATTB34,Dividendo Estrangeiro,7.89
+11/11/2022,ATTB34,Dividendo,7.89
 11/16/2022,HGRU11,Provento,31.16
 11/16/2022,RECT11,Provento,12.54
 11/16/2022,TRXF11,Provento,16.15

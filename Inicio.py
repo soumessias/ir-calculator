@@ -1,4 +1,4 @@
-from utils import end_of_year_wallet, processed_dataset
+from utils import end_of_year_wallet, processed_dataset, bens_e_direitos_declaration, dividendos_declaration
 from numerize.numerize import numerize
 from st_aggrid import AgGrid
 import streamlit as st
@@ -100,7 +100,8 @@ if st.session_state["Operations_Flag"] == 1 and st.session_state["Dividends_Flag
 
     # Starting the Statistics
     st.markdown("##### :moneybag: Wallet's summary for " + str(st.session_state["Year"] - 1) + "!")
-    AgGrid(end_of_year_df, height=200, update_mode="NO_UPDATE", fit_columns_on_grid_load=True)
+    AgGrid(end_of_year_df[["Symbol", "Total Shares", "Average Cost", "Category", "Position Cost", "Dividends"]], height=200, update_mode="NO_UPDATE", fit_columns_on_grid_load=True)
+
     # Metrics of the Year
     st.markdown("##### :bar_chart: Some Metrics of the Year:")
     metrics_col = st.columns(3)
@@ -226,4 +227,43 @@ if st.session_state["Operations_Flag"] == 1 and st.session_state["Dividends_Flag
                               )
                           ) + ")"
 
-)
+    )
+
+    st.markdown("---")
+    st.markdown("## Income Tax Declaration")
+
+    st.markdown("#### Bens e Direitos")
+    st.info(":information_source: How to do (WIP)")
+    bens_e_direitos_tabs = st.tabs(["Ações", "FIIs", "BDRs", "ETFs", "Stocks", "Stock ETF", "Reit"])
+    # Ações
+    bens_e_direitos_tabs[0].dataframe(bens_e_direitos_declaration(end_of_year_df, "Ação"), height=200)
+    # FIIs
+    bens_e_direitos_tabs[1].dataframe(bens_e_direitos_declaration(end_of_year_df, "FII"), height=200)
+    # BDRs
+    bens_e_direitos_tabs[2].dataframe(bens_e_direitos_declaration(end_of_year_df, "BDR"), height=200)
+    # ETFs
+    bens_e_direitos_tabs[3].dataframe(bens_e_direitos_declaration(end_of_year_df, "ETF"), height=200)
+    # Stocks
+    bens_e_direitos_tabs[4].dataframe(bens_e_direitos_declaration(end_of_year_df, "Stock"), height=200)
+    # Stock ETFs
+    bens_e_direitos_tabs[5].dataframe(bens_e_direitos_declaration(end_of_year_df, "Stock ETF"), height=200)
+    # Reits
+    bens_e_direitos_tabs[6].dataframe(bens_e_direitos_declaration(end_of_year_df, "Reit"), height=200)
+
+    st.markdown("#### Dividendos")
+    st.info(":information_source: How to do (WIP)")
+    dividendos_tabs = st.tabs(["Div de Ações", "JCP de Ações", "Proventos", "Div de BDR", "Div de Stock, Stock ETF e Reit"])
+    # Div de Ações
+    dividendos_tabs[0].dataframe(dividendos_declaration(st.session_state["Dividends_Dataset"], "Ação", "Dividendo"), height=200)
+    # JCP de Ações
+    dividendos_tabs[1].dataframe(dividendos_declaration(st.session_state["Dividends_Dataset"], "Ação", "JCP"), height=200)
+    # Proventos de FII
+    dividendos_tabs[2].dataframe(dividendos_declaration(st.session_state["Dividends_Dataset"], "FII", "Provento"), height=200)
+    # Div de BDRs
+    dividendos_tabs[3].dataframe(dividendos_declaration(st.session_state["Dividends_Dataset"], "BDR", "Dividendo"), height=200)
+    # Div de Stocks, Stock ETFs e Reits
+    dividendos_tabs[4].dataframe(dividendos_declaration(st.session_state["Dividends_Dataset"], "Stock", "Dividendo"), height=200)
+
+    st.markdown("#### Ganhos de Capital")
+    st.info(":information_source: How to do (WIP)")
+    ganho_capital_tabs = st.tabs(["Ações", "FIIs", "BDRs", "ETFs", "Stocks", "Stock ETF", "Reit"])
