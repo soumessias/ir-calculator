@@ -1,11 +1,18 @@
-# ir-calculator
+# IR Calculator 2023
 
-Esta é uma aplicação desenvolvida por mim para calculo automático da declaração do imposto de renda para operações feitas na bolsa de valores.
+This is an application developed by me to automatically calculate the income tax return for operations carried out on the stock exchange.
 
-> :warning: **Aplicação ainda em construção!**
+> :warning: **Application still under construction!**
 
-O propósito desta aplicação é para ser utilizada como caso de uso para estudo do framework [Streamlit](https://streamlit.io/) e também para facilitar uma tarefa que eu devo fazer todo ano.
+The purpose of this application is to be used as a use case for studying the [Streamlit](https://streamlit.io/) framework and also to facilitate a task that I must do every year.
 
-Qualquer dúvida ou feedback, entrar em contato no [Meu Linkedin](https://www.linkedin.com/in/soumessias/).
+Any questions or feedback, get in touch at [My Linkedin](https://www.linkedin.com/in/soumessias/).
 
-Obrigado!
+Thanks!
+
+### How to use:
+
+- Enter this [Link](https://www.google.com)
+- Upload a CSV with all operations that you've had already made in the market (check the "example_dataset_operations.csv" to see the header format)
+- Upload a CSV with all dividends received over the time (check the "example_dataset_dividends.csv" to see the header format)
+- Select a year, then click Submit!
