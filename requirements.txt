@@ -1,2 +1,2 @@
 numerize
-st_aggrid
+streamlit-aggrid
