@@ -77,6 +77,9 @@ def processed_dataset(df):
     # Joining the Processed DF with the Database info
     processed_df = processed_df.merge(st.session_state["Symbol_Database"][st.session_state["Symbol_Database"].columns[:-1]], on='Symbol', how='left')
 
+    # Getting just earnings with sales
+    processed_df.loc[df["Type"] == "Venda", "Earnings"] = (processed_df["Cost"] - processed_df["Average Cost"]) * processed_df["Qty"]
+
     return processed_df[processed_df["Date"] < datetime.datetime(st.session_state["Year"], 1, 1).date()]
 
 # Get End of the Year Wallet
@@ -136,3 +139,17 @@ def dividendos_declaration(df, category, type):
 # Function to compare this year and last year data
 def metric_compare(this_year_data, last_year_data):
     return str(round(((this_year_data/last_year_data) - 1) * 100, 2)) + "% last year (" + str(numerize(last_year_data, 2)) + ")"
+
+# Function to calculate the Earnings by month
+def earnings_by_month(df):
+
+    # Filtering by last year data
+    df = df[pd.DatetimeIndex(df['Date']).year == st.session_state["Year"] - 1]
+    # Adding a Month Column
+    df["Month"] = pd.DatetimeIndex(df["Date"]).month
+    # Calculating how much was transacted in sales
+    df.loc[df["Type"] == "Venda", "Total Transacted"] = df["Cost"] * df["Qty"]
+    # Groupping by month
+    df = df.groupby("Month")[["Total Transacted", "Earnings"]].sum().reset_index()
+
+    return df

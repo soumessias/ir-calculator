@@ -19,7 +19,8 @@ st.session_state["Symbols"] = []
 # Page Config
 st.set_page_config(
     page_title="IR Calculator",
-    page_icon=":money_with_wings:"
+    page_icon=":money_with_wings:",
+    layout="wide"
 )
 
 # Beginning Main Page
@@ -104,7 +105,7 @@ if st.session_state["Operations_Flag"] == 1 and st.session_state["Dividends_Flag
 
     # Metrics of the Year
     st.markdown("##### :bar_chart: Some Metrics of the Year:")
-    metrics_col = st.columns(3)
+    metrics_col = st.columns(4)
     metrics_col[0].metric(
         "Number of Purchases",
         len(processed_df[(processed_df["Type"] == "Compra") & (pd.DatetimeIndex(processed_df["Date"]).year == st.session_state["Year"] - 1)]),
@@ -132,6 +133,14 @@ if st.session_state["Operations_Flag"] == 1 and st.session_state["Dividends_Flag
         metric_compare(
             sum(dividends_df[(pd.DatetimeIndex(dividends_df["Date"]).year == st.session_state["Year"] - 1)]["Amount"]),
             sum(dividends_df[(pd.DatetimeIndex(dividends_df["Date"]).year == st.session_state["Year"] - 2)]["Amount"])
+        )
+    )
+    metrics_col[3].metric(
+        "Earnings with Sales",
+        numerize(processed_df[pd.DatetimeIndex(processed_df["Date"]).year == st.session_state["Year"] - 1]["Earnings"].sum()),
+        metric_compare(
+            processed_df[pd.DatetimeIndex(processed_df["Date"]).year == st.session_state["Year"] - 1]["Earnings"].sum(),
+            processed_df[pd.DatetimeIndex(processed_df["Date"]).year == st.session_state["Year"] - 2]["Earnings"].sum()
         )
     )
 
@@ -177,3 +186,19 @@ if st.session_state["Operations_Flag"] == 1 and st.session_state["Dividends_Flag
     st.markdown("#### Ganhos de Capital")
     st.info(":information_source: How to do (WIP)")
     ganho_capital_tabs = st.tabs(["Ações", "BDRs", "ETFs", "Fiagro", "FIIs", "Stocks", "Stock ETF", "Reit"])
+    # Ações
+    ganho_capital_tabs[0].dataframe(earnings_by_month(processed_df[processed_df["Category"] == "Ação"]), height=200)
+    # BDRs
+    ganho_capital_tabs[1].dataframe(earnings_by_month(processed_df[processed_df["Category"] == "BDR"]), height=200)
+    # ETFs
+    ganho_capital_tabs[2].dataframe(earnings_by_month(processed_df[processed_df["Category"] == "ETF"]), height=200)
+    # Fiagro
+    ganho_capital_tabs[3].dataframe(earnings_by_month(processed_df[processed_df["Category"] == "Fiagro"]), height=200)
+    # FIIs
+    ganho_capital_tabs[4].dataframe(earnings_by_month(processed_df[processed_df["Category"] == "FII"]), height=200)
+    # Stocks
+    ganho_capital_tabs[5].dataframe(earnings_by_month(processed_df[processed_df["Category"] == "Stock"]), height=200)
+    # Stocks ETF
+    ganho_capital_tabs[6].dataframe(earnings_by_month(processed_df[processed_df["Category"] == "Stock ETF"]), height=200)
+    # Reit
+    ganho_capital_tabs[7].dataframe(earnings_by_month(processed_df[processed_df["Category"] == "Reit"]), height=200)
