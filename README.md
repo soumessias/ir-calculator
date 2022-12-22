@@ -12,7 +12,7 @@ Thanks!
 
 ### How to use:
 
-- Enter this [Link](https://soumessias-ir-calculator-inicio-9ml80y.streamlit.app/)
+- Enter this [Link](https://soumessias-ir-calculator-appinicio-3pp8ir.streamlit.app/)
 - Upload a CSV with all operations that you've had already made in the market (check the "example_dataset_operations.csv" to see the header format)
 - Upload a CSV with all dividends received over the time (check the "example_dataset_dividends.csv" to see the header format)
 - Select a year, then click Submit!
