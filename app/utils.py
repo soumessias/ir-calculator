@@ -1,15 +1,13 @@
+from numerize.numerize import numerize
 import streamlit as st
 import pandas as pd
 import datetime
-
-import streamlit
-
 
 # Function to get the Average Price and filter by Year
 def processed_dataset(df):
 
     # Loading the Symbols Database
-    st.session_state["Symbol_Database"] = pd.read_csv("symbols_database.csv")
+    st.session_state["Symbol_Database"] = pd.read_csv("data/symbols_database.csv")
     not_found_symbols = []
 
     # Processes to get the Average Cost
@@ -134,3 +132,7 @@ def dividendos_declaration(df, category, type):
         df["Month"] = pd.DatetimeIndex(df["Date"]).month
         df = df.groupby("Month")["Amount"].sum().reset_index()
     return df
+
+# Function to compare this year and last year data
+def metric_compare(this_year_data, last_year_data):
+    return str(round(((this_year_data/last_year_data) - 1) * 100, 2)) + "% last year (" + str(numerize(last_year_data, 2)) + ")"
