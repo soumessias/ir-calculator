@@ -2,8 +2,6 @@
 
 This is an application developed by me to automatically calculate the income tax return for operations carried out on the stock exchange.
 
-> :warning: **Application still under construction!**
-
 The purpose of this application is to be used as a use case for studying the [Streamlit](https://streamlit.io/) framework and also to facilitate a task that I must do every year.
 
 Any questions or feedback, get in touch at [My Linkedin](https://www.linkedin.com/in/soumessias/).
